@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sunny Shawarma | À Boire, À Manger</title>
+<style>
+:root {
+--orange: #E85D04;
+--deep-orange: #D00000;
+--yellow: #FFBA08;
+--cream: #FFF8F0;
+--dark: #2B2B2B;
+--soft-red: #F48C06;
+}
+
+* {
+margin: 0;
+padding: 0;
+box-sizing: border-box;
+}
+
+body {
+font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+background: var(--cream);
+color: var(--dark);
+line-height: 1.6;
+}
+
+header {
+background: linear-gradient(135deg, var(--orange), var(--deep-orange));
+color: white;
+text-align: center;
+padding: 2.5rem 1rem 2rem;
+position: relative;
+overflow: hidden;
+}
+
+header::before {
+content: '';
+position: absolute;
+top: -50%;
+left: -50%;
+width: 200%;
+height: 200%;
+background: radial-gradient(circle, rgba(255,186,8,0.15) 0%, transparent 60%);
+animation: sunPulse 8s ease-in-out infinite;
+}
+
+@keyframes sunPulse {
+0%, 100% { transform: scale(1); opacity: 0.6; }
+50% { transform: scale(1.1); opacity: 1; }
+}
+
+.logo {
+max-width: 280px;
+width: 80%;
+margin: 0 auto 1rem;
+display: block;
+border-radius: 12px;
+box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+position: relative;
+z-index: 1;
+}
+
+.tagline {
+font-size: 1.1rem;
+font-weight: 500;
+letter-spacing: 1px;
+position: relative;
+z-index: 1;
+opacity: 0.95;
+}
+
+nav {
+background: var(--dark);
+padding: 0.8rem;
+position: sticky;
+top: 0;
+z-index: 100;
+display: flex;
+justify-content: center;
+gap: 1.5rem;
+flex-wrap: wrap;
+}
+
+nav a {
+color: white;
+text-decoration: none;
+font-weight: 600;
+font-size: 0.95rem;
+padding: 0.4rem 0.8rem;
+border-radius: 20px;
+transition: background 0.2s;
+}
+
+nav a:hover {
+background: var(--orange);
+}
+
+section {
+max-width: 900px;
+margin: 0 auto;
+padding: 2.5rem 1.2rem;
+}
+
+h2 {
+font-size: 1.8rem;
+color: var(--deep-orange);
+margin-bottom: 1.2rem;
+text-align: center;
+position: relative;
+}
+
+h2::after {
+content: '';
+display: block;
+width: 60px;
+height: 4px;
+background: var(--yellow);
+margin: 0.5rem auto 0;
+border-radius: 2px;
+}
+
+.about-text {
+text-align: center;
+font-size: 1.1rem;
+max-width: 650px;
+margin: 0 auto 1.5rem;
+}
+
+.info-grid {
+display: grid;
+grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+gap: 1.2rem;
+margin-top: 1.5rem;
+}
+
+.info-card {
+background: white;
+border-radius: 12px;
+padding: 1.3rem;
+text-align: center;
+box-shadow: 0 4px 15px rgba(0,0,0,0.06);
+border-top: 4px solid var(--orange);
+}
+
+.info-card h3 {
+color: var(--deep-orange);
+margin-bottom: 0.4rem;
+font-size: 1.1rem;
+}
+
+.menu-section {
+background: white;
+border-radius: 16px;
+padding: 2rem 1.5rem;
+box-shadow: 0 6px 20px rgba(0,0,0,0.07);
+}
+
+.menu-category {
+margin-bottom: 2rem;
+}
+
+.menu-category h3 {
+background: linear-gradient(90deg, var(--orange), var(--soft-red));
+color: white;
+padding: 0.6rem 1.2rem;
+border-radius: 8px;
+font-size: 1.15rem;
+margin-bottom: 1rem;
+display: inline-block;
+}
+
+.menu-item {
+display: flex;
+justify-content: space-between;
+align-items: flex-start;
+padding: 0.8rem 0;
+border-bottom: 1px dashed #eee;
+}
+
+.menu-item:last-child {
+border-bottom: none;
+}
+
+.item-name {
+font-weight: 600;
+font-size: 1.05rem;
+}
+
+.item-desc {
+font-size: 0.9rem;
+color: #666;
+margin-top: 0.2rem;
+}
+
+.item-price {
+font-weight: 700;
+color: var(--deep-orange);
+font-size: 1.1rem;
+white-space: nowrap;
+margin-left: 1rem;
+}
+
+.badge {
+display: inline-block;
+background: #e8f5e9;
+color: #2e7d32;
+font-size: 0.75rem;
+padding: 0.15rem 0.5rem;
+border-radius: 12px;
+margin-left: 0.4rem;
+font-weight: 600;
+}
+
+.specials {
+display: grid;
+grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+gap: 1.2rem;
+margin-top: 1rem;
+}
+
+.special-card {
+background: linear-gradient(145deg, #fff7ed, #ffedd5);
+border: 2px solid var(--yellow);
+border-radius: 14px;
+padding: 1.4rem;
+text-align: center;
+}
+
+.special-card h3 {
+color: var(--deep-orange);
+margin-bottom: 0.5rem;
+}
+
+.special-card .day {
+font-size: 0.9rem;
+font-weight: 700;
+color: var(--orange);
+text-transform: uppercase;
+letter-spacing: 1px;
+}
+
+.hours-location {
+display: grid;
+grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+gap: 1.5rem;
+}
+
+.hl-card {
+background: white;
+border-radius: 12px;
+padding: 1.5rem;
+box-shadow: 0 4px 15px rgba(0,0,0,0.06);
+}
+
+.hl-card h3 {
+color: var(--deep-orange);
+margin-bottom: 0.8rem;
+}
+
+footer {
+background: var(--dark);
+color: white;
+text-align: center;
+padding: 2rem 1rem;
+margin-top: 2rem;
+}
+
+.footer-logo {
+font-size: 1.4rem;
+font-weight: 800;
+letter-spacing: 1px;
+margin-bottom: 0.5rem;
+}
+
+@media (max-width: 600px) {
+h2 { font-size: 1.5rem; }
+.menu-item { flex-direction: column; gap: 0.3rem; }
+.item-price { margin-left: 0; }
+}
+</style>
+</head>
+<body>
+
+<header>
+<img src="sunny-shawarma-logo.png" alt="Sunny Shawarma Logo" class="logo">
+<p class="tagline">À BOIRE, À MANGER LES SHAWARMAS</p>
+</header>
+
+<nav>
+<a href="#menu">Menu</a>
+<a href="#specials">Spéciaux</a>
+<a href="#about">À propos</a>
+<a href="#hours">Heures & Lieu</a>
+</nav>
+
+<section id="about">
+<h2>Bienvenue chez Sunny Shawarma</h2>
+<p class="about-text">
+Des shawarmas juteux et des poutines généreuses, préparés avec amour.
+Des couleurs vives comme le soleil, une ambiance chaleureuse pour toute la famille —
+et un goût qui attire les jeunes autant que les parents.
+</p>
+<div class="info-grid">
+<div class="info-card">
+<h3>👨‍👩‍👧‍👦 Familles</h3>
+<p>Notre marché principal. Portions généreuses et options pour tous.</p>
+</div>
+<div class="info-card">
+<h3>🌱 Options végé</h3>
+<p>Falafel shawarma + sauce poutine à base de bouillon végétarien.</p>
+</div>
+<div class="info-card">
+<h3>✨ Personnalisable</h3>
+<p>Choisissez vos ingrédients. C’est vous le chef!</p>
+</div>
+</div>
+</section>
+
+<section id="menu">
+<h2>Notre Menu</h2>
+<div class="menu-section">
+<div class="menu-category">
+<h3>🥙 Shawarmas</h3>
+<div class="menu-item">
+<div>
+<div class="item-name">Shawarma Classique <span class="badge">Populaire</span></div>
+<div class="item-desc">Poulet ou boeuf mariné, légumes frais, sauce au choix</div>
+</div>
+<div class="item-price">9 $</div>
+</div>
+<div class="menu-item">
+<div>
+<div class="item-name">Shawarma Falafel <span class="badge">Végétalien</span></div>
+<div class="item-desc">Falafels croustillants, légumes, sauce tahini ou maison</div>
+</div>
+<div class="item-price">9 $</div>
+</div>
+<div class="menu-item">
+<div>
+<div class="item-name">Shawarma Sur Mesure</div>
+<div class="item-desc">Choisissez viande, légumes et sauces — exactement comme vous aimez</div>
+</div>
+<div class="item-price">9 $</div>
+</div>
+</div>
+
+<div class="menu-category">
+<h3>🍟 Poutines</h3>
+<div class="menu-item">
+<div>
+<div class="item-name">Poutine Classique</div>
+<div class="item-desc">Frites dorées, fromage en grains, sauce (option végétarienne disponible)</div>
+</div>
+<div class="item-price">6 $</div>
+</div>
+<div class="menu-item">
+<div>
+<div class="item-name">Poutine Shawarma</div>
+<div class="item-desc">Notre poutine + morceaux de shawarma + sauce maison</div>
+</div>
+<div class="item-price">10 $</div>
+</div>
+<div class="menu-item">
+<div>
+<div class="item-name">Poutine Végétarienne <span class="badge">Végé</span></div>
+<div class="item-desc">Sauce à base de bouillon végétarien + fromage</div>
+</div>
+<div class="item-price">6 $</div>
+</div>
+</div>
+
+<div class="menu-category">
+<h3>🥤 Boissons</h3>
+<div class="menu-item">
+<div>
+<div class="item-name">Boissons gazeuses & eau</div>
+<div class="item-desc">Coca, Sprite, Eau, Jus</div>
+</div>
+<div class="item-price">1,50 $</div>
+</div>
+</div>
+</div>
+</section>
+
+<section id="specials">
+<h2>Spéciaux de la semaine</h2>
+<div class="specials">
+<div class="special-card">
+<div class="day">Mercredi</div>
+<h3>40 % de rabais</h3>
+<p>Sur les spécialités du jour. Venez profiter du soleil… et des économies!</p>
+</div>
+<div class="special-card">
+<div class="day">Vendredi</div>
+<h3>Achetez 2, 1 offert</h3>
+<p>Sur les spécialités. Parfait pour la fin de semaine en famille.</p>
+</div>
+</div>
+</section>
+
+<section id="hours">
+<h2>Heures & Emplacement</h2>
+<div class="hours-location">
+<div class="hl-card">
+<h3>🕒 Heures d’ouverture</h3>
+<p><strong>Tous les jours</strong><br>10 h – 20 h</p>
+<p style="margin-top:0.8rem; font-size:0.95rem; color:#555;">Parfait pour le dîner, le souper ou un snack après le parc.</p>
+</div>
+<div class="hl-card">
+<h3>📍 Emplacement</h3>
+<p>Près des grands parcs<br><em>(emplacement idéal pour les familles)</em></p>
+<p style="margin-top:0.8rem; font-size:0.95rem; color:#555;">Venez après une journée au soleil — on vous attend avec des shawarmas chauds.</p>
+</div>
+</div>
+</section>
+
+<footer>
+<div class="footer-logo">SUNNY SHAWARMA</div>
+<p>À boire, à manger les shawarmas</p>
+<p style="margin-top:0.8rem; font-size:0.85rem; opacity:0.7;">© 2026 Sunny Shawarma · Fait avec ❤️ et beaucoup d’épices</p>
+</footer>
+
+</body>
+</html>
